@@ -1,21 +1,49 @@
 Type: Package
 Package: phenomenalist
-Title: What the Package Does (One Line, Title Case)
+Title: Analysis Toolkit for PhenoCycler (CODEX) Data in R
 Version: 0.0.0.9000
 Authors@R: 
     person("Igor", "Dolgalev", , "igor.dolgalev@nyumc.org", role = c("aut", "cre"))
-Description: More about what it does (maybe more than one line) Use four
-    spaces when indenting paragraphs within the Description.
+Description: A collection of tools for cleaning, clustering, and plotting
+    PhenoCycler (CODEX) data.
 License: MIT + file LICENSE
+Depends:
+    ggplot2,
+    R (>= 4.0),
+    SpatialExperiment
 Imports: 
-    cli,
+    ComplexHeatmap,
+    cowplot,
+    data.table,
+    dplyr,
+    FNN,
+    ggsci,
     glue,
-    lifecycle,
+    igraph (>= 1.2.7),
+    janitor (>= 1.2.0),
+    methods,
+    RColorBrewer,
+    readr,
     rlang (>= 0.4.11),
-    withr
+    scattermore,
+    scran,
+    scuttle,
+    SingleCellExperiment,
+    stringr,
+    SummarizedExperiment,
+    tibble,
+    tidyr,
+    tidyselect,
+    uwot
 Suggests: 
     covr,
-    roxygen2
+    knitr,
+    rmarkdown,
+    roxygen2,
+    testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
+biocViews:
 Config/testthat/edition: 3
 Encoding: UTF-8
 RoxygenNote: 7.1.2

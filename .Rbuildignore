@@ -1,5 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
-^codecov\.yml$
+^data-raw$
 ^\.github$
+^codecov\.yml$
