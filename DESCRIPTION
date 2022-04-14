@@ -9,7 +9,7 @@ Description: A collection of tools for cleaning, clustering, and plotting
 License: MIT + file LICENSE
 Depends:
     ggplot2,
-    R (>= 4.0),
+    R (>= 4.1),
     SpatialExperiment
 Imports: 
     ComplexHeatmap,
