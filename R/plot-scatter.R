@@ -56,7 +56,7 @@ plot_scatter <- function(data, x, y, color_by, smooth = FALSE, range = c(0.01, 0
 
   # color scheme
   gradient_colors <- rev(RColorBrewer::brewer.pal(11, "RdYlBu"))
-  discrete_colors <- ggsci::pal_igv("default")(51)
+  discrete_colors <- c(ggsci::pal_igv("default")(51), ggsci::pal_igv("default", alpha = 0.6)(51))
 
   # determine if plotting continuous numeric/expression values
   continuous <- FALSE
