@@ -57,8 +57,8 @@ plot_heatmap <- function(x, group_by, assay = "logcounts", out_dir = NULL) {
     e <- scale(t(e))
 
     # limit outliers
-    e[e > 5] <- 5
-    e[e < -5] <- -5
+    e[e > 4] <- 4
+    e[e < -4] <- -4
 
     # generate the plot
     hm <-
@@ -73,7 +73,9 @@ plot_heatmap <- function(x, group_by, assay = "logcounts", out_dir = NULL) {
       return(hm)
     } else {
       out_base <- glue("{out_dir}/{g}-heatmap")
-      png(filename = glue("{out_base}.png"), width = 10, height = 5, units = "in", res = 300)
+      plot_w <- 10
+      plot_h <- (nrow(e) / 6) + 3
+      png(filename = glue("{out_base}.png"), width = plot_w, height = plot_h, units = "in", res = 300)
       ComplexHeatmap::draw(hm)
       dev.off()
     }
