@@ -60,19 +60,23 @@ plot_scatter <- function(data, x, y, color_by, smooth = FALSE, range = c(0.01, 0
 
   # determine if plotting continuous numeric/expression values
   continuous <- FALSE
-  if (is.numeric(data[[color_by]]) && length(unique(data[[color_by]])) > 100) {
-    continuous <- TRUE
+  if (is.numeric(data[[color_by]])) {
+    if (length(unique(data[[color_by]])) > 100) {
+      continuous <- TRUE
 
-    # rescale values to 0-1 (original distribution)
-    # scale(x, center = min(x), scale = diff(range(x)))
-    # set values to percentiles (flat/even distribution)
-    # range(ecdf(x)(x))
+      # rescale values to 0-1 (original distribution)
+      # scale(x, center = min(x), scale = diff(range(x)))
+      # set values to percentiles (flat/even distribution)
+      # range(ecdf(x)(x))
 
-    # adjust range of values (remove outliers)
-    if (range[2] - range[1] < 1) {
-      range <- quantile(data[[color_by]], range)
-      data[[color_by]][data[[color_by]] < range[1]] <- range[1]
-      data[[color_by]][data[[color_by]] > range[2]] <- range[2]
+      # adjust range of values (remove outliers)
+      if (range[2] - range[1] < 1) {
+        range <- quantile(data[[color_by]], range)
+        data[[color_by]][data[[color_by]] < range[1]] <- range[1]
+        data[[color_by]][data[[color_by]] > range[2]] <- range[2]
+      }
+    } else {
+      data[[color_by]] <- as.factor(data[[color_by]])
     }
   }
 
@@ -100,9 +104,10 @@ plot_scatter <- function(data, x, y, color_by, smooth = FALSE, range = c(0.01, 0
 
   # make dots larger for smaller datasets
   # due to rasterization properties it is often beneficial to try non-integer point sizes
-  point_size <- 3.5
-  if (ncol(data) < 10000) point_size <- 4.5
-  if (ncol(data) < 1000) point_size <- 5.5
+  point_size <- 2.2
+  if (ncol(data) < 100000) point_size <- 3.2
+  if (ncol(data) < 10000) point_size <- 5.2
+  if (ncol(data) < 1000) point_size <- 7.2
 
   # randomize cell order
   set.seed(99)
