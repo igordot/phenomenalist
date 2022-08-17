@@ -35,3 +35,7 @@ A \linkS4class{SpatialExperiment} object.
 \description{
 Create a \linkS4class{SpatialExperiment} object (used in the same manner as \linkS4class{SingleCellExperiment}) that will store all of the project data.
 }
+\examples{
+tonsil_csv <- system.file("extdata", "tonsil-akoya-2018-500.csv", package = "phenomenalist")
+tonsil_spe <- create_object(tonsil_csv, skip_cols = "DAPI|Blank", transformation = "z")
+}

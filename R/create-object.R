@@ -20,6 +20,10 @@
 #' @importFrom tibble column_to_rownames
 #'
 #' @export
+#'
+#' @examples
+#' tonsil_csv <- system.file("extdata", "tonsil-akoya-2018-500.csv", package = "phenomenalist")
+#' tonsil_spe <- create_object(tonsil_csv, skip_cols = "DAPI|Blank", transformation = "z")
 create_object <- function(x, expression_cols = NULL, metadata_cols = NULL, skip_cols = NULL, clean_names = TRUE, transformation = NULL, out_dir = NULL) {
 
   # check if the input is valid
@@ -31,12 +35,12 @@ create_object <- function(x, expression_cols = NULL, metadata_cols = NULL, skip_
   }
   if (!is.null(out_dir)) {
     if (dir.exists(out_dir)) {
-      stop("output directory already exists")
+      stop("output directory `", out_dir, "` already exists")
     }
   }
 
   # check if the data frame dimensions make sense
-  if (nrow(x) < 1000) {
+  if (nrow(x) < 500) {
     stop("data frame has too few rows/cells")
   }
   if (ncol(x) < 10) {
