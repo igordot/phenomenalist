@@ -14,7 +14,6 @@
 #'
 #' @export
 run_umap <- function(x, assay = "exprs", n_neighbors = 50, min_dist = 0.01, n_threads = NULL, out_dir = NULL) {
-
   # check if the input is valid
   if (!is(x, "SpatialExperiment")) {
     stop("input is not a SpatialExperiment object")

@@ -33,8 +33,8 @@ which embedded points will be spread out.}
 
 \item{n_threads}{Number of threads to use (except during stochastic gradient
 descent). Default is half the number of concurrent threads supported by the
-system. For nearest neighbor search, only applies if 
-\code{nn_method = "annoy"}. If \code{n_threads > 1}, then the Annoy index 
+system. For nearest neighbor search, only applies if
+\code{nn_method = "annoy"}. If \code{n_threads > 1}, then the Annoy index
 will be temporarily written to disk in the location determined by
 \code{\link[base]{tempfile}}.}
 

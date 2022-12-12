@@ -18,7 +18,6 @@
 #'
 #' @export
 plot_heatmap <- function(x, group_by, assay = "logcounts", out_dir = NULL) {
-
   # check if the input is valid
   if (!is(x, "SpatialExperiment")) {
     stop("input is not a SpatialExperiment object")
@@ -47,7 +46,6 @@ plot_heatmap <- function(x, group_by, assay = "logcounts", out_dir = NULL) {
 
   # generate the plot
   for (g in group_by) {
-
     # get expression matrix (clusters are columns)
     e <- scuttle::summarizeAssayByGroup(x, ids = colData(x)[[g]], assay.type = assay, statistics = "median")
     e <- SummarizedExperiment::assay(e, i = "median")

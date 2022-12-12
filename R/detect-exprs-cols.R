@@ -8,7 +8,6 @@
 #' @importFrom dplyr between
 #' @importFrom methods is
 detect_exprs_cols <- function(x) {
-
   # check if the input is valid
   if (!is.data.frame(x)) {
     stop("input is not a data frame")

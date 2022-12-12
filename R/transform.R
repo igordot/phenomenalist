@@ -20,7 +20,6 @@
 #'
 #' @export
 transform <- function(x, method = c("log", "z"), out_dir = NULL) {
-
   # check if the input is valid
   method <- match.arg(method)
   if (!is(x, "SpatialExperiment")) {

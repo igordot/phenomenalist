@@ -9,7 +9,6 @@
 #' @importFrom janitor clean_names
 #' @importFrom methods is
 clean_col_names <- function(x) {
-
   # check if the input is valid
   if (!is.data.frame(x)) {
     stop("input is not a data frame")

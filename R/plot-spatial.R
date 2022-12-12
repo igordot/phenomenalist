@@ -15,7 +15,6 @@
 #'
 #' @export
 plot_spatial <- function(x, color_by, assay = "logcounts", smooth = FALSE, range = c(0.01, 0.99), out_dir = NULL) {
-
   # check if the input is valid
   if (!is(x, "SpatialExperiment")) {
     stop("input is not a SpatialExperiment object")

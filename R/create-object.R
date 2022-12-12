@@ -25,7 +25,6 @@
 #' tonsil_csv <- system.file("extdata", "tonsil-akoya-2018-500.csv", package = "phenomenalist")
 #' tonsil_spe <- create_object(tonsil_csv, skip_cols = "DAPI|Blank", transformation = "z")
 create_object <- function(x, expression_cols = NULL, metadata_cols = NULL, skip_cols = NULL, clean_names = TRUE, transformation = NULL, out_dir = NULL) {
-
   # check if the input is valid
   if (is.character(x)) {
     x <- data.table::fread(x, stringsAsFactors = FALSE, data.table = FALSE)
@@ -53,9 +52,13 @@ create_object <- function(x, expression_cols = NULL, metadata_cols = NULL, skip_
 
   # remove columns that should be ignored from the table
   if (!is.null(skip_cols)) {
-    # treating as a pattern to get matching column names if length of 1
+    # treating as a pattern if length of 1
     if (length(skip_cols) == 1) {
+      # get column names matching the pattern
       skip_cols <- str_subset(names(x), pattern = skip_cols)
+    } else {
+      # subset the array to the real column names (for the message)
+      skip_cols <- intersect(names(x), skip_cols)
     }
     x <- x[, setdiff(names(x), skip_cols)]
     message("skipped columns: ", toString(skip_cols), "\n")
@@ -91,7 +94,6 @@ create_object <- function(x, expression_cols = NULL, metadata_cols = NULL, skip_
 
   # clean column names
   if (clean_names) {
-
     # run generic column name cleanup
     exprs <- clean_col_names(exprs)
     x <- clean_col_names(x)

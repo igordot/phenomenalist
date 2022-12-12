@@ -16,7 +16,6 @@
 #'
 #' @export
 plot_distribution <- function(x, assay = "exprs", out_dir = NULL) {
-
   # check if the input is valid
   if (!is(x, "SpatialExperiment")) {
     stop("input is not a SpatialExperiment object")
