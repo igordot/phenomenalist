@@ -1,7 +1,7 @@
 Type: Package
 Package: phenomenalist
 Title: Analysis Toolkit for PhenoCycler (CODEX) Data in R
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: 
     person("Igor", "Dolgalev", , "igor.dolgalev@nyumc.org", role = c("aut", "cre"))
 Description: A collection of tools for cleaning, clustering, and plotting
@@ -49,4 +49,4 @@ VignetteBuilder:
 biocViews:
 Config/testthat/edition: 3
 Encoding: UTF-8
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3

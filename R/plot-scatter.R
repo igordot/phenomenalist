@@ -21,7 +21,6 @@
 #' @importFrom scattermore geom_scattermore
 #' @importFrom stats quantile
 plot_scatter <- function(data, x, y, color_by, smooth = FALSE, range = c(0.01, 0.99), title = "", aspect_ratio = 1) {
-
   # check if the input is valid
   if (!is.data.frame(data)) {
     stop("input is not a data frame")
@@ -56,7 +55,7 @@ plot_scatter <- function(data, x, y, color_by, smooth = FALSE, range = c(0.01, 0
 
   # color scheme
   gradient_colors <- rev(RColorBrewer::brewer.pal(11, "RdYlBu"))
-  discrete_colors <- c(ggsci::pal_igv("default")(51), ggsci::pal_igv("default", alpha = 0.6)(51))
+  discrete_colors <- c(ggsci::pal_igv("default")(51), ggsci::pal_igv("default", alpha = 0.6)(51), ggsci::pal_igv("default", alpha = 0.4)(51))
 
   # determine if plotting continuous numeric/expression values
   continuous <- FALSE
@@ -82,7 +81,6 @@ plot_scatter <- function(data, x, y, color_by, smooth = FALSE, range = c(0.01, 0
 
   # smooth values
   if (continuous && smooth) {
-
     # smooth values using kernel density estimation (MASS::kde2d)
     # returns x/y coordinates and a matrix of the estimated density
     # dens <- MASS::kde2d(data[[x]], data[[y]], n = 100)
@@ -105,9 +103,9 @@ plot_scatter <- function(data, x, y, color_by, smooth = FALSE, range = c(0.01, 0
   # make dots larger for smaller datasets
   # due to rasterization properties it is often beneficial to try non-integer point sizes
   point_size <- 2.2
-  if (ncol(data) < 100000) point_size <- 3.2
-  if (ncol(data) < 10000) point_size <- 5.2
-  if (ncol(data) < 1000) point_size <- 7.2
+  if (nrow(data) < 100000) point_size <- 4.2
+  if (nrow(data) < 10000) point_size <- 7.2
+  if (nrow(data) < 1000) point_size <- 10.2
 
   # randomize cell order
   set.seed(99)
