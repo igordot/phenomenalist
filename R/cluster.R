@@ -20,7 +20,6 @@
 #'
 #' @export
 cluster <- function(x, method = c("leiden"), resolution = 1, n_neighbors = 50, out_dir = NULL) {
-
   # check if the input is valid
   method <- match.arg(method)
   if (!is(x, "SpatialExperiment")) {
@@ -49,7 +48,6 @@ cluster <- function(x, method = c("leiden"), resolution = 1, n_neighbors = 50, o
 
   # clustering using igraph::cluster_leiden() (added in v1.2.7)
   if (method == "leiden") {
-
     # build a nearest-neighbor graph
     # matrix is transposed if rows are cells
     g <- scran::buildSNNGraph(exprs_mat, transposed = FALSE, k = n_neighbors)
@@ -73,7 +71,11 @@ cluster <- function(x, method = c("leiden"), resolution = 1, n_neighbors = 50, o
 
       # pad with "C" to avoid downstream numeric conversions
       clusters <- as.character(clusters)
-      clusters <- stringr::str_pad(clusters, width = 2, side = "left", pad = "0")
+      if (n_clust < 100) {
+        clusters <- stringr::str_pad(clusters, width = 2, side = "left", pad = "0")
+      } else {
+        clusters <- stringr::str_pad(clusters, width = nchar(n_clust), side = "left", pad = "0")
+      }
       clusters <- stringr::str_c("C", clusters)
 
       # add clusters to the original object
@@ -87,10 +89,12 @@ cluster <- function(x, method = c("leiden"), resolution = 1, n_neighbors = 50, o
           cluster_summary <- janitor::tabyl(x[[clusters_label]])
           colnames(cluster_summary) <- c("cluster", "cells_num", "cells_freq")
           readr::write_csv(cluster_summary, glue("{clusters_dir}/{clusters_label}-summary.csv"))
-          # plots
-          plot_heatmap(x, group_by = clusters_label, out_dir = clusters_dir)
-          plot_spatial(x, color_by = clusters_label, out_dir = clusters_dir)
-          plot_dr(x, dr = "UMAP", color_by = clusters_label, out_dir = clusters_dir)
+          # plots (skip if too many clusters)
+          if (n_clust < 150) {
+            plot_heatmap(x, group_by = clusters_label, out_dir = clusters_dir)
+            plot_spatial(x, color_by = clusters_label, out_dir = clusters_dir)
+            plot_dr(x, dr = "UMAP", color_by = clusters_label, out_dir = clusters_dir)
+          }
         }
       }
     }
