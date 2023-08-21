@@ -27,7 +27,11 @@
 create_object <- function(x, expression_cols = NULL, metadata_cols = NULL, skip_cols = NULL, clean_names = TRUE, transformation = NULL, out_dir = NULL) {
   # check if the input is valid
   if (is.character(x)) {
-    x <- data.table::fread(x, stringsAsFactors = FALSE, data.table = FALSE)
+    if (file.exists(x)) {
+      x <- data.table::fread(x, stringsAsFactors = FALSE, data.table = FALSE)
+    } else {
+      stop("input is not a file or a data frame")
+    }
   }
   if (!is.data.frame(x)) {
     stop("input is not a file or a data frame")
@@ -49,6 +53,15 @@ create_object <- function(x, expression_cols = NULL, metadata_cols = NULL, skip_
   message("number of input table rows: ", nrow(x))
   message("number of input table columns: ", ncol(x))
   message("")
+
+  # fix duplicate columns (further cleanup later with clean_col_names())
+  if (anyDuplicated(names(x))) {
+    dup_logical <- duplicated(names(x))
+    message("duplicate column names detected: ", toString(names(x)[dup_logical]))
+    names(x) <- make.unique(names(x), sep = "_")
+    message("duplicate columns renamed to: ", toString(names(x)[dup_logical]))
+    message("")
+  }
 
   # remove columns that should be ignored from the table
   if (!is.null(skip_cols)) {

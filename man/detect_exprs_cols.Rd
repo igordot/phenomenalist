@@ -13,5 +13,6 @@ detect_exprs_cols(x)
 A vector of column names.
 }
 \description{
-Detect marker/antibody column names
+The input is generally a table of both expression values and various metadata columns.
+This function attempts to determine which of the columns contain expression values.
 }
