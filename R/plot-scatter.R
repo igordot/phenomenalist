@@ -102,7 +102,7 @@ plot_scatter <- function(data, x, y, color_by, smooth = FALSE, range = c(0.01, 0
 
   # make dots larger for smaller datasets
   # due to rasterization properties it is often beneficial to try non-integer point sizes
-  point_size <- 2.2
+  point_size <- 3.2
   if (nrow(data) < 100000) point_size <- 4.2
   if (nrow(data) < 10000) point_size <- 7.2
   if (nrow(data) < 1000) point_size <- 10.2
