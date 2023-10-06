@@ -4,16 +4,8 @@ template:
   bootstrap: 5
   bootswatch: simplex
   includes:
-    before_body: |
-       <!-- Global site tag (gtag.js) - Google Analytics -->
-       <script async src="https://www.googletagmanager.com/gtag/js?id=G-WW0CJR3Z9Z"></script>
-       <script>
-         window.dataLayer = window.dataLayer || [];
-         function gtag(){dataLayer.push(arguments);}
-         gtag('js', new Date());
-
-         gtag('config', 'G-WW0CJR3Z9Z');
-       </script>
+    after_body: >
+      <script data-goatcounter="https://igordot.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
 home:
   strip_header: true
