@@ -15,8 +15,10 @@
 #' @import SpatialExperiment stringr
 #' @importFrom data.table fread
 #' @importFrom dplyr select
+#' @importFrom glue glue
 #' @importFrom janitor clean_names
 #' @importFrom methods is
+#' @importFrom stats median
 #' @importFrom tibble column_to_rownames
 #'
 #' @export
@@ -152,9 +154,16 @@ create_object <- function(x, expression_cols = NULL, metadata_cols = NULL, skip_
   # set cell IDs as rownames
   rownames(exprs) <- rownames(x)
 
-  # remove rows/cells without values (assuming negative values are not possible)
-  # exprs <- exprs[rowSums(exprs) > 0, ]
-  # x <- x[rownames(exprs), ]
+  # check for expression columns with a high fraction of identical values
+  for (col_name in colnames(exprs)) {
+    col_vals <- exprs[, col_name]
+    col_med_val <- median(col_vals)
+    med_vals <- length(col_vals[col_vals == col_med_val])
+    med_vals_pct <- round((med_vals / nrow(exprs)) * 100, 1)
+    if (med_vals_pct > 90) {
+      warning(glue("{med_vals_pct}% of {col_name} values are {col_med_val} "), call. = FALSE, immediate. = TRUE)
+    }
+  }
 
   message("number of expression columns: ", ncol(exprs))
   message("number of metadata columns: ", ncol(x))

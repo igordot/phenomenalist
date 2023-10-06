@@ -58,6 +58,9 @@ plot_heatmap <- function(x, group_by, assay = "logcounts", out_dir = NULL) {
     e[e > 4] <- 4
     e[e < -4] <- -4
 
+    # zero variance produces NaN values, resulting in a clustering error
+    e[is.nan(e)] <- 0
+
     # generate the plot
     hm <-
       ComplexHeatmap::Heatmap(
