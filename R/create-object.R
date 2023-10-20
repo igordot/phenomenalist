@@ -105,7 +105,7 @@ create_object <- function(x, expression_cols = NULL, metadata_cols = NULL, skip_
   if (length(setdiff(metadata_cols, names(x))) > 0) {
     stop("missing metadata columns: ", toString(setdiff(metadata_cols, names(x))))
   }
-  x <- x[, metadata_cols]
+  x <- x[, metadata_cols, drop = FALSE]
 
   # clean column names
   if (clean_names) {
