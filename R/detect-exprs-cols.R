@@ -48,7 +48,7 @@ detect_exprs_cols <- function(x) {
 
   # remove columns with small values and percentile columns where max is 100
   x <- x[sapply(x, function(y) {
-    (max(y) > 1.5) && (max(y) < 99.1 || max(y) > 100.9)
+    (max(y) > 1.5) && (max(y) < 99.9 || max(y) > 100.1)
   })]
   # message("cols non-percentile: ", ncol(x))
 
