@@ -28,6 +28,14 @@ jobs:
         with:
           use-public-rspm: true
 
+      # changes in Matrix 1.6-2 break irlba, install both from source
+      # https://github.com/bwlewis/irlba/issues/70
+      - name: Install specific R dependencies
+        run: |
+          install.packages("Matrix", type = "source")
+          install.packages("irlba", type = "source")
+        shell: Rscript {0}
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::pkgdown, local::.
