@@ -15,7 +15,7 @@ cluster(
 \arguments{
 \item{x}{A \linkS4class{SpatialExperiment} object.}
 
-\item{method}{Clustering method (only `leiden` is implemented currently).}
+\item{method}{Clustering method (only \code{leiden} is implemented currently).}
 
 \item{resolution}{Value of the parameter controlling the coarseness of the clusters (higher resolution yields more clusters).}
 

@@ -2,7 +2,7 @@
 #'
 #' Plot cell-level reduced dimension results stored in a SpatialExperiment object.
 #'
-#' @param x A \linkS4class{SpatialExperiment} object.
+#' @param x A [SpatialExperiment-class] object.
 #' @param dr .
 #' @param assay A character string indicating which expression values should be used.
 #' @inheritParams plot_scatter

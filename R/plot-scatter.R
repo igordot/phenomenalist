@@ -1,14 +1,14 @@
 #' Generate a generic scatter plot
 #'
 #' Create a scatter plot to display the relationship between two continuous variables.
-#' This is essentially a wrapper for \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.
+#' This is essentially a wrapper for [ggplot2::geom_point()].
 #'
 #' @param data A data frame.
 #' @param x .
 #' @param y .
 #' @param color_by Column metadata field(s) or feature(s) to color by.
 #' @param smooth A logical scalar. Smooth values. Helps to visualize expression patterns in a plot with many overlapping points.
-#' @param range A vector of 2 values indicating the minimum and maximum percentiles for the color range. Helps to visualize expression patterns when extreme outliers are present. For example, \code{c(0, 0.99)} will not expand the color scale above 99th percentile.
+#' @param range A vector of 2 values indicating the minimum and maximum percentiles for the color range. Helps to visualize expression patterns when extreme outliers are present. For example, `c(0, 0.99)` will not expand the color scale above 99th percentile.
 #' @param title Plot title.
 #' @param aspect_ratio Aspect ratio of the panel.
 #'

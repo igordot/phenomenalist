@@ -1,11 +1,11 @@
 #' Generate a heatmap
 #'
-#' @param x A \linkS4class{SpatialExperiment} object.
+#' @param x A [SpatialExperiment-class] object.
 #' @param group_by Column metadata field(s) to group by.
 #' @param assay A character string indicating which expression values should be used.
 #' @param out_dir Name of the output analysis directory. If specified, the plots will be saved there.
 #'
-#' @return A \linkS4class{Heatmap} object.
+#' @return A [Heatmap-class] object.
 #'
 #' @importFrom ComplexHeatmap draw Heatmap
 #' @importFrom ggsci pal_igv

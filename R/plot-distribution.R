@@ -2,7 +2,7 @@
 #'
 #' Plot distribution of expression intensities, split by marker.
 #'
-#' @param x A \linkS4class{SpatialExperiment} object.
+#' @param x A [SpatialExperiment-class] object.
 #' @param assay A character string indicating which values should be used.
 #' @param out_dir Name of the output analysis directory. If specified, the plots will be saved there.
 #'

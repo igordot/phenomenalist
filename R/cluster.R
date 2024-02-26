@@ -2,7 +2,7 @@
 #'
 #' Cluster similar cells based on their expression profiles.
 #'
-#' @param x A \linkS4class{SpatialExperiment} object.
+#' @param x A [SpatialExperiment-class] object.
 #' @param method Clustering method (only `leiden` is implemented currently).
 #' @param resolution Value of the parameter controlling the coarseness of the clusters (higher resolution yields more clusters).
 #' @param n_neighbors The maximum number of nearest neighbors to compute.

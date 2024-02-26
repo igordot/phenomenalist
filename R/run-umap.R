@@ -1,6 +1,6 @@
 #' Run UMAP dimensionality reduction
 #'
-#' @param x A \linkS4class{SpatialExperiment} object.
+#' @param x A [SpatialExperiment-class] object.
 #' @param assay .
 #' @inheritParams uwot::umap
 #' @param out_dir Name of the output analysis directory. If specified, the object will be saved there.
