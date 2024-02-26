@@ -3,9 +3,11 @@ url: https://igordot.github.io/phenomenalist/
 template:
   bootstrap: 5
   bootswatch: simplex
+  bslib:
+    pkgdown-nav-height: 80px
   includes:
     after_body: >
       <script data-goatcounter="https://igordot.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
 home:
-  strip_header: true
+  strip_header: false
